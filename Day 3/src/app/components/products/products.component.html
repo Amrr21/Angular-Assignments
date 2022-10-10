@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div
+      class="card me-5"
+      style="width: 20rem"
+      *ngFor="let product of productFilterCateg"
+      [ngClass]="{ 'd-none': product.quantity == 0 }"
+      [ngStyle]="{ 'box-shadow': '0 6px 8px -3px rgba(107, 13, 13, 0.9)' }"
+      [ngClass]="{ 'bg-warning': product.quantity == 1 }"
+    >
+      <img
+        width="200px"
+        height="200px"
+        class="card-img-top"
+        [src]="product.ImageURL"
+      />
+      <div class="card-body">
+        <h5 class="card-title mb-5">{{ product.name }}</h5>
+        <h5 class="card-title">
+          Price in USD: {{ product.price | currency: "USD" }}
+        </h5>
+        <h5 class="card-title">
+          Price in EGP : {{ product.price | uSDtoEGP | currency: "EGP" }}
+        </h5>
+        <input #itemCount type="number" class="form-control-sm" />
+        <div class="text-danger" [ngSwitch]="product.quantity">
+          <div *ngSwitchCase="0">out of stock</div>
+          <div *ngSwitchCase="1">one item left</div>
+          <div *ngSwitchCase="2">two items left</div>
+        </div>
+        <button
+          class="btn btn-primary mt-3"
+          (click)="buy(product.price, itemCount.value, product.quantity)"
+        >
+          Buy
+        </button>
+      </div>
+    </div>
+    <div class="mt-5">
+      <h5>Date : {{ orderTime | date: "fullDate" }}</h5>
+    </div>
+  </div>
+</div>

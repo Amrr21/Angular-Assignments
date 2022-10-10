@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="card me-5" style="width: 20rem;">
+        <img width="200px" height="200px" class="card-img-top" [src]="productDetails?.ImageURL">
+        <div class="card-body">
+            <h5 class="card-title mb-5">{{productDetails?.name}}</h5>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus ad molestiae quasi? Reiciendis tenetur
+                iusto tempore obcaecati inventore, quidem, distinctio quis voluptatum illum alias nemo ipsum animi
+                minus? Deserunt, veritatis?</p>
+            <div class="text-danger" [ngSwitch]="productDetails?.quantity">
+                <div *ngSwitchCase="0">out of stock</div>
+                <div *ngSwitchCase="1">one item left</div>
+                <div *ngSwitchCase="2">two items left</div>
+            </div>
+            <h5 class="card-title">Price in USD: {{productDetails?.price | currency :"USD"}}</h5>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button [disabled]="selectedProID == productsID[0]" type="button" class="btn btn-primary"
+                    (click)="goPrev()">Previous</button>
+                <button type="button" class="btn btn-danger" (click)="goBack()">Back</button>
+                <button [disabled]="selectedProID == productsID[productsID.length-1]" type="button"
+                    class="btn btn-primary" (click)="goNext()">Next</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,42 @@
+<!-- <button class="btn btn-info" (click)="addProduct()"> Add Product</button> -->
+<h2 class="text-center">Create new product</h2>
+<form #myForm="ngForm" (ngSubmit)="addProduct()">
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="newProduct.name" #inputName="ngModel" required
+            pattern="[A-Za-z]{3,}">
+
+        <div [hidden]="inputName.valid || inputName.untouched">
+            <p class="text-danger" *ngIf="inputName.errors?.['required']"> Required! </p>
+
+            <p class="text-danger" *ngIf="inputName.errors?.['pattern']"> Name is too short at least 3 chars </p>
+        </div>
+
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Price</label>
+        <input type="number" class="form-control" name="price" [(ngModel)]="newProduct.price">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Quantity</label>
+        <input type="number" class="form-control" name="quantity" [(ngModel)]="newProduct.quantity">
+    </div>
+
+    <div>
+        <label for="">Category</label>
+        <select class="form-select mb-3" [(ngModel)]="newProduct.categoryID" name="Category">
+            <option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</option>
+
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Image </label>
+        <input type="file" class="form-control" name="image" [(ngModel)]="newProduct.ImageURL">
+    </div>
+
+
+    <button [disabled]="myForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -1,0 +1,26 @@
+<div class="contaienr">
+    <h2 class="text-dark text-center">Home page</h2>
+    <div class="row">
+        <form class="col-4" [hidden]="isUserLogged">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+        </form>
+
+    </div>
+    <button class="btn btn-info" [disabled]="isUserLogged" (click)="login()">Login</button>
+    <button class="btn btn-danger" [disabled]="!isUserLogged" (click)="logout()">Logout</button>
+
+
+
+    <div class="text-center">
+        <img src="assets/banner.jpg" alt=".." class="img-fluid">
+    </div>
+
+
+</div>

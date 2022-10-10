@@ -1,0 +1,28 @@
+<div class="container">
+    <h1 class="text-info center">my Order Page</h1>
+    <div>
+        <h6>Login </h6>
+        <input type="text" class="form-control" #userName>
+    </div>
+
+    <label for="">Category</label>
+    <select class="form-select mb-3" [(ngModel)]="selectedCategoryID">
+        <option selected value="0">All</option>
+        <option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</option>
+
+    </select>
+    <div>
+        Selected Category : {{selectedCategoryID}}
+    </div>
+
+
+    <hr>
+    <app-products [selectCategoryIDChild]="selectedCategoryID" (totalEv)="changedPrice($event)"></app-products>
+
+    <hr>
+
+    <div>
+        <h4> The total price {{RecivedTotal | currency }}</h4>
+    </div>
+    <!-- <button class="btn btn-primary" (click)="proceedToBuy()">Proceed To Buy</button> -->
+</div>
